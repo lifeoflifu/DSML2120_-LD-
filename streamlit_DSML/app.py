@@ -9,9 +9,10 @@ st.set_page_config(
 st.title(" Welcome to My Streamlit Site")
 st.markdown(
     """
-    This is a two-page Streamlit app:
+    This is a three-page Streamlit app:
     - **Bio**: who I am
     - **Visualization**: a tiny interactive chart
+    - **Pie**: explore sample cuisine data from a CSV file
 
     Use the left sidebar to switch pages.
     """
