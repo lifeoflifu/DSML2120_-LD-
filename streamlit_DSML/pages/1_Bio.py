@@ -3,21 +3,22 @@ from pathlib import Path
 
 st.title("👋 My Bio")
 
-# ---------- TODO: Replace with your own info ----------
-NAME = "Your Name"
-PROGRAM = "Your Program / Major / Role"
+# ---------- About me ----------
+NAME = "Lifu Deng"
+PROGRAM = "Data Science and Machine Learning | Minor in Computer Security"
 INTRO = (
-    "Write 2–3 sentences about yourself: what you’re studying/working on, "
-    "what excites you about data visualization or computing, etc."
+    "I’m studying data science and machine learning, with a minor in computer security. "
+    "I’m interested in data visualization because it helps me present data clearly "
+    "so audiences and clients can understand it and use it for its intended purpose."
 )
 FUN_FACTS = [
-    "I love …",
-    "I’m learning …",
-    "I want to build …",
+    "I enjoy cooking Asian, European, and North American food—from Cantonese and Sichuan dishes to Italian pasta and Mexican favorites.",
+    "I try to make time for golf and hiking when I need a digital detox.",
+    "I’m fascinated by AI and hope to build my own small AI system that runs smoothly on the hardware I already have.",
 ]
 
 
-PHOTO_PATH = "your_photo.jpg"  # Put a file in repo root or set a URL
+PHOTO_PATH = "lifu_deng.jpeg"  # Stored in streamlit_DSML/assets/
 
 
 def find_photo(filename=PHOTO_PATH):
@@ -61,4 +62,4 @@ for i, f in enumerate(FUN_FACTS, start=1):
     st.write(f"- {f}")
 
 st.divider()
-st.caption("Edit `pages/1_Bio.py` to customize this page.")
+st.caption("AI assistance was used for guided learning and coding support.")
