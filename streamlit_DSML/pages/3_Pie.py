@@ -8,7 +8,7 @@ import streamlit as st
 st.title("🥧 Interactive Pie Chart")
 st.caption("Illustrative sample values for a class demo, not actual cooking records.")
 
-CHART_TITLE = "Cuisine Mix"
+CHART_TITLE = "Sample Cuisine Mix"
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "pie_demo.csv"
 
 # Read the CSV on each rerun so updates to the file are reflected in the chart.
