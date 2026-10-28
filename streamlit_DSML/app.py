@@ -9,10 +9,12 @@ st.set_page_config(
 st.title(" Welcome to My Streamlit Site")
 st.markdown(
     """
-    This is a three-page Streamlit app:
+    Explore my Streamlit portfolio:
     - **Bio**: who I am
     - **Visualization**: a tiny interactive chart
     - **Pie**: explore sample cuisine data from a CSV file
+    - **Live Crypto**: cached CoinGecko prices and session history
+    - **Denver Weather**: temperature over time from Open-Meteo
 
     Use the left sidebar to switch pages.
     """
