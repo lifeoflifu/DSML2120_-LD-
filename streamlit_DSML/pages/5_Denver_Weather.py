@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from live_data import chart_times, denver_time, fetch_weather, rolling_history
+from live_data import DENVER_TIMEZONE, chart_times, denver_time, fetch_weather, rolling_history
 
 
 st.set_page_config(page_title="Denver Weather | Lifu Deng", page_icon="🌤️", layout="wide")
@@ -52,6 +52,8 @@ def show_weather():
         st.info("The live temperature chart will appear when Open-Meteo responds. Sample values are not added to live history.")
     else:
         figure = px.line(chart_times(history), x="time", y="temperature", markers=True, hover_data=["source"], labels={"time": "Time (Denver)", "temperature": "Temperature (°C)", "source": "Source"}, title="Denver temperature · last 6 hours")
+        end = pd.Timestamp.now(tz=DENVER_TIMEZONE).tz_localize(None)
+        figure.update_xaxes(range=[end - pd.Timedelta(hours=6), end], tickformat="%H:%M")
         st.plotly_chart(figure, width="stretch", key="weather_history_chart")
         st.caption("Starts with recent hourly model data, then adds distinct current-weather readings during this session. Repeated cached readings do not create extra points.")
         with st.expander("View temperature history"):

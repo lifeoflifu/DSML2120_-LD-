@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-from live_data import COINS, chart_times, denver_time, fetch_prices, rolling_history
+from live_data import COINS, DENVER_TIMEZONE, chart_times, denver_time, fetch_prices, rolling_history
 
 
 st.set_page_config(page_title="Live Crypto | Lifu Deng", page_icon="📡", layout="wide")
@@ -54,6 +54,13 @@ def show_prices():
     else:
         view = history[history["coin"] == history_coin]
         figure = px.line(chart_times(view), x="time", y="usd", markers=True, labels={"time": "Time (Denver)", "usd": "Price (USD)"}, title=f"{history_coin.title()} · distinct API observations")
+        end = pd.Timestamp.now(tz=DENVER_TIMEZONE).tz_localize(None)
+        figure.update_xaxes(range=[end - pd.Timedelta(hours=1), end], tickformat="%H:%M")
+        figure.update_yaxes(tickprefix="$", tickformat=",.2f")
+        if view["usd"].nunique() == 1:
+            price = float(view.iloc[0]["usd"])
+            margin = max(price * 0.02, 1)
+            figure.update_yaxes(range=[price - margin, price + margin])
         st.plotly_chart(figure, width="stretch", key="crypto_history_chart")
         st.caption(f"{len(view)} distinct observation(s). One dot is expected at first; new points appear when CoinGecko provides a newer timestamp.")
     st.caption(f"View refreshed: {denver_time(pd.Timestamp.now(tz='UTC'))}. History belongs to this browser session.")
